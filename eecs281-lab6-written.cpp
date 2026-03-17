@@ -7,26 +7,20 @@
 using namespace std;
 
 void two_pair_sums(const vector<int>& input_vec, ostream& out) {
-    unordered_map<int, vector<pair<int, int>>> hash;
+    unordered_map<int, pair<int, int>> seen;
 
     for (size_t i = 0; i < input_vec.size(); i++) {
         for (size_t j = i + 1; j < input_vec.size(); j++) {
-            int val1 = input_vec[i];
-            int val2 = input_vec[j];
-            hash[val1 + val2].push_back({val1, val2});
-        }
-    }
+            int sum = input_vec[i] + input_vec[j];
 
-    for (const auto& entry : hash) {
-        const vector<pair<int, int>>& pairs = entry.second;
-        if (pairs.size() > 1) {
-            for (size_t i = 0; i < pairs.size(); i++) {
-                for (size_t j = i + 1; j < pairs.size(); j++) {
-                    out << "(" << pairs[i].first << " , " << pairs[i].second << ")";
-                    out << " and ";
-                    out << "(" << pairs[j].first << " , " << pairs[j].second << ")";
-                    out << '\n';
-                }
+            if (seen.find(sum) != seen.end()) {
+                auto prev = seen[sum];
+                out << "(" << prev.first << " , " << prev.second << ")";
+                out << " and ";
+                out << "(" << input_vec[i] << " , " << input_vec[j] << ")";
+                out << '\n';
+            } else {
+                seen[sum] = {input_vec[i], input_vec[j]};
             }
         }
     }
