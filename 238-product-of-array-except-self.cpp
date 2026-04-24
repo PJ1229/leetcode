@@ -1,3 +1,25 @@
+#include <algorithm>
+#include <array>
+#include <cmath>
+#include <cstdint>
+#include <climits>
+#include <functional>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+using namespace std;
+
 /*
 Input: nums = [1,2,3,4]
 Output: [24,12,8,6]
