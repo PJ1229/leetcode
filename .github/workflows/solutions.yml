@@ -1,0 +1,75 @@
+name: Solutions
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Compile, run, and refresh progress
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the problem list
+        run: python3 nc150.py
+
+      - name: Compile and run every solution.cpp
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=()
+          while IFS= read -r -d '' src; do
+            files+=("$src")
+          done < <(find . -name solution.cpp -not -path './.git/*' -print0 | sort -z)
+
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No solution.cpp files yet."
+            exit 0
+          fi
+
+          fail=0
+          for src in "${files[@]}"; do
+            echo "::group::${src}"
+            bin="$(mktemp)"
+            echo "g++ -std=c++20 -Wall -o sol ${src}"
+            if g++ -std=c++20 -Wall -o "$bin" "$src"; then
+              if "$bin"; then
+                echo "passed ${src}"
+              else
+                echo "tests failed: ${src}"
+                fail=1
+              fi
+            else
+              echo "compile failed: ${src}"
+              fail=1
+            fi
+            rm -f "$bin"
+            echo "::endgroup::"
+          done
+          exit "$fail"
+
+      - name: Check generated README and dashboard
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 readme.py --check
+          python3 dashboard.py --check
+
+      - name: Update README and dashboard
+        if: github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          python3 readme.py
+          python3 dashboard.py
+          if git diff --quiet -- README.md docs/index.html; then
+            echo "Progress pages already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md docs/index.html
+          git commit -m "Update progress pages"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
