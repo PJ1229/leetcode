@@ -266,7 +266,6 @@ def recent_block(problems: list[dict], dated: list[dict], repo_url: str, has_cod
     pool.sort(key=lambda problem: problem["solved_date"], reverse=True)
     items = []
     for problem in pool[:RECENT_LIMIT]:
-        href, kind = code_link(problem, repo_url, has_code)
         level = problem["difficulty"]
         status = problem["status"]
         meta = (
@@ -274,15 +273,15 @@ def recent_block(problems: list[dict], dated: list[dict], repo_url: str, has_cod
             f' · <span class="diff {level.lower()}">{esc(level)}</span>'
             f' · <span class="status {status}">{esc(status)}</span>'
         )
-        if kind == "folder":
-            meta += " · code"
+        if has_code(problem):
+            meta += " · " + file_link(repo_url, problem)
         items.append(
             "\n".join(
                 [
                     "<li>",
                     f'<time datetime="{problem["solved_date"].isoformat()}">'
                     f"{esc(format_date(problem['solved_date']))}</time>",
-                    f'<a href="{esc(href)}">{esc(problem["title"])}</a>',
+                    leetcode_link(problem),
                     f'<p class="meta">{meta}</p>',
                     "</li>",
                 ]
@@ -308,9 +307,12 @@ def solutions_block(problems: list[dict], repo_url: str, has_code) -> str:
             continue
         entries = []
         for problem in items:
-            href = folder_url(repo_url, problem)
             entries.append(
-                f'<li><a href="{esc(href)}">{problem["number"]}. {esc(problem["title"])}</a></li>'
+                "<li>"
+                + leetcode_link(problem, f"{problem['number']}. {problem['title']}")
+                + " "
+                + file_link(repo_url, problem)
+                + "</li>"
             )
         groups.append(
             "\n".join(
@@ -341,15 +343,22 @@ def footer_block(repo_url: str) -> str:
     )
 
 
-def code_link(problem: dict, repo_url: str, has_code) -> tuple[str, str]:
-    if has_code(problem):
-        return folder_url(repo_url, problem), "folder"
-    return problem["url"], "statement"
+def leetcode_link(problem: dict, text: str | None = None) -> str:
+    label = problem["title"] if text is None else text
+    return (
+        f'<a class="problem" href="{esc(problem["url"])}" '
+        'target="_blank" rel="noopener noreferrer">'
+        f"{esc(label)}</a>"
+    )
 
 
-def folder_url(repo_url: str, problem: dict) -> str:
-    rel = nc150.problem_dir(problem).relative_to(nc150.ROOT).as_posix()
-    return f"{repo_url}/tree/{LINK_BRANCH}/{rel}"
+def file_link(repo_url: str, problem: dict) -> str:
+    return f'<a class="code" href="{esc(solution_url(repo_url, problem))}">solution</a>'
+
+
+def solution_url(repo_url: str, problem: dict) -> str:
+    rel = nc150.solution_file(problem).relative_to(nc150.ROOT).as_posix()
+    return f"{repo_url}/blob/{LINK_BRANCH}/{rel}"
 
 
 def bar_width(done: int, total: int) -> str:
@@ -663,7 +672,16 @@ time {
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }
-.recent a, .codes a { font-weight: 500; letter-spacing: -0.015em; }
+.recent a.problem, .codes a.problem { font-weight: 500; letter-spacing: -0.015em; }
+a.code {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+a.code:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .meta { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.85rem; }
 .diff.easy { color: var(--ink); font-weight: 600; }
 .diff.medium { color: var(--mid); font-weight: 500; }

@@ -132,9 +132,9 @@ int main() {{
 
 def notes_md(problem: dict) -> str:
     topic = nc150.TOPIC_BY_ID[problem["topic"]].name
-    return f"""# {problem["number"]}. {problem["title"]}
+    return f"""# [{problem["number"]}. {problem["title"]}]({problem["url"]})
 
-- **Problem:** {problem["url"]}
+- **Problem:** [{problem["url"]}]({problem["url"]})
 - **Topic:** {topic}
 - **Difficulty:** {problem["difficulty"]}
 - **Date:**

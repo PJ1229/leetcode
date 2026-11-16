@@ -114,7 +114,7 @@ No `solved_date` entries yet.
 
 ## Solved
 
-Every `solved` and `review` problem. The folder link points at the code in this repo.
+Every `solved` and `review` problem. The name links to LeetCode. Code links to `solution.cpp` when it is in the repo.
 
 None yet. Start with `python3 new.py 217` (Contains Duplicate).
 
@@ -126,7 +126,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Arrays & Hashing (0/9)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Easy | todo | — |
 | 242 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Easy | todo | — |
@@ -142,7 +142,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Two Pointers (0/5)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 125 | [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | Easy | todo | — |
 | 167 | [Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Medium | todo | — |
@@ -154,7 +154,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Sliding Window (0/6)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 121 | [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | todo | — |
 | 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Medium | todo | — |
@@ -167,7 +167,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Stack (0/7)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 20 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) | Easy | todo | — |
 | 155 | [Min Stack](https://leetcode.com/problems/min-stack/) | Medium | todo | — |
@@ -181,7 +181,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Binary Search (0/7)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 704 | [Binary Search](https://leetcode.com/problems/binary-search/) | Easy | todo | — |
 | 74 | [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/) | Medium | todo | — |
@@ -195,7 +195,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Linked List (0/11)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 206 | [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) | Easy | todo | — |
 | 21 | [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | Easy | todo | — |
@@ -213,7 +213,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Trees (0/15)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | Easy | todo | — |
 | 104 | [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Easy | todo | — |
@@ -235,7 +235,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Tries (0/3)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 208 | [Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) | Medium | todo | — |
 | 211 | [Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) | Medium | todo | — |
@@ -245,7 +245,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Heap / Priority Queue (0/7)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 703 | [Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | Easy | todo | — |
 | 1046 | [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/) | Easy | todo | — |
@@ -259,7 +259,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Backtracking (0/9)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 78 | [Subsets](https://leetcode.com/problems/subsets/) | Medium | todo | — |
 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum/) | Medium | todo | — |
@@ -275,7 +275,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Graphs (0/13)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 200 | [Number of Islands](https://leetcode.com/problems/number-of-islands/) | Medium | todo | — |
 | 133 | [Clone Graph](https://leetcode.com/problems/clone-graph/) | Medium | todo | — |
@@ -295,7 +295,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Advanced Graphs (0/6)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 332 | [Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/) | Hard | todo | — |
 | 1584 | [Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) | Medium | todo | — |
@@ -308,7 +308,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### 1-D DP (0/12)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 70 | [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) | Easy | todo | — |
 | 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | Easy | todo | — |
@@ -327,7 +327,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### 2-D DP (0/11)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 62 | [Unique Paths](https://leetcode.com/problems/unique-paths/) | Medium | todo | — |
 | 1143 | [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) | Medium | todo | — |
@@ -345,7 +345,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Greedy (0/8)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 53 | [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) | Medium | todo | — |
 | 55 | [Jump Game](https://leetcode.com/problems/jump-game/) | Medium | todo | — |
@@ -360,7 +360,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Intervals (0/6)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 57 | [Insert Interval](https://leetcode.com/problems/insert-interval/) | Medium | todo | — |
 | 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals/) | Medium | todo | — |
@@ -373,7 +373,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Math & Geometry (0/8)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 48 | [Rotate Image](https://leetcode.com/problems/rotate-image/) | Medium | todo | — |
 | 54 | [Spiral Matrix](https://leetcode.com/problems/spiral-matrix/) | Medium | todo | — |
@@ -388,7 +388,7 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 ### Bit Manipulation (0/7)
 
-| # | Problem | Difficulty | Status | Folder |
+| # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
 | 136 | [Single Number](https://leetcode.com/problems/single-number/) | Easy | todo | — |
 | 191 | [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) | Easy | todo | — |
