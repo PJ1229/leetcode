@@ -202,7 +202,7 @@ def streak_section(problems: list[dict], today: date) -> str:
             ]
             for problem in pool[:10]
         ]
-        lines.append(table(["Date", "Problem", "Topic", "Difficulty", "Status", "Folder"], rows))
+        lines.append(table(["Date", "Problem", "Topic", "Difficulty", "Status", "Code"], rows))
     if undated:
         lines.append("")
         lines.append(
@@ -235,7 +235,7 @@ def in_progress_section(problems: list[dict]) -> str:
             "",
             "These are still `todo`, and the folder is already in the repo.",
             "",
-            table(["#", "Problem", "Topic", "Folder"], rows),
+            table(["#", "Problem", "Topic", "Code"], rows),
         ]
     )
 
@@ -245,7 +245,7 @@ def solved_section(problems: list[dict]) -> str:
     lines = [
         "## Solved",
         "",
-        "Every `solved` and `review` problem. The folder link points at the code in this repo.",
+        "Every `solved` and `review` problem. The name links to LeetCode. Code links to `solution.cpp` when it is in the repo.",
         "",
     ]
     if not finished:
@@ -267,7 +267,7 @@ def solved_section(problems: list[dict]) -> str:
             ]
         )
     lines.append(
-        table(["#", "Problem", "Topic", "Difficulty", "Status", "Solved", "Folder"], rows)
+        table(["#", "Problem", "Topic", "Difficulty", "Status", "Solved", "Code"], rows)
     )
     return "\n".join(lines)
 
@@ -301,7 +301,7 @@ def roadmap_section(problems: list[dict]) -> str:
                     "",
                     f"### {topic.name} ({done}/{len(items)})",
                     "",
-                    table(["#", "Problem", "Difficulty", "Status", "Folder"], rows),
+                    table(["#", "Problem", "Difficulty", "Status", "Code"], rows),
                 ]
             )
         )
@@ -340,8 +340,8 @@ def problem_link(problem: dict) -> str:
 def folder_link(problem: dict) -> str:
     if not nc150.has_solution(problem):
         return "—"
-    rel = nc150.problem_dir(problem).relative_to(nc150.ROOT).as_posix()
-    return f"[folder]({rel})"
+    rel = nc150.solution_file(problem).relative_to(nc150.ROOT).as_posix()
+    return f"[solution]({rel})"
 
 
 def table(headers: list[str], rows: list[list[str]]) -> str:

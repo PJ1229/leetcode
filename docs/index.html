@@ -255,7 +255,16 @@ time {
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }
-.recent a, .codes a { font-weight: 500; letter-spacing: -0.015em; }
+.recent a.problem, .codes a.problem { font-weight: 500; letter-spacing: -0.015em; }
+a.code {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+a.code:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .meta { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.85rem; }
 .diff.easy { color: var(--ink); font-weight: 600; }
 .diff.medium { color: var(--mid); font-weight: 500; }
