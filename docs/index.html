@@ -13,88 +13,159 @@
 <style>
 
 :root {
-  color-scheme: light;
-  --bg: #f3f0e8;
-  --paper: #faf8f3;
-  --ink: #1c1b17;
-  --muted: #5c574e;
-  --line: #e0d8cb;
-  --fill: #1e4d38;
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --ink: #1d1d1f;
+  --mid: #424245;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --fill: #1d1d1f;
+  --track: #e8e8ed;
+  --card: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --ink: #f5f5f7;
+    --mid: #d2d2d7;
+    --muted: #a1a1a6;
+    --line: #2c2c2e;
+    --fill: #f5f5f7;
+    --track: #2c2c2e;
+    --card: #000000;
+  }
 }
 * { box-sizing: border-box; }
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.25rem;
+}
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Liberation Sans", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+}
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.bar-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0.72rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+.brand {
+  flex: none;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.bar nav {
+  display: flex;
+  gap: 1.15rem;
+  min-width: 0;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a {
+  flex: none;
+  padding: 0.15rem 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.bar nav a.active,
+.bar nav a[aria-current="true"] {
+  color: var(--ink);
+  font-weight: 600;
 }
 main {
-  max-width: 40rem;
+  max-width: 42rem;
   margin: 0 auto;
-  padding: 2.75rem 1.25rem 4rem;
+  padding: 3.75rem 1.5rem 6.5rem;
 }
-a { color: inherit; }
-a:hover { text-decoration-thickness: 2px; }
-a:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; }
+section[id] { scroll-margin-top: 5.25rem; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 1px; }
+a:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 .eyebrow {
   margin: 0;
   color: var(--muted);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 h1 {
-  margin: 0.35rem 0 0.6rem;
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, "Liberation Serif", serif;
-  font-size: clamp(2.4rem, 8vw, 3.4rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  margin: 0.55rem 0 0.9rem;
+  font-size: clamp(2.5rem, 7vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 h2 {
-  margin: 2.25rem 0 0.85rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
+  margin: 3.25rem 0 1.15rem;
   color: var(--muted);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 h3 {
-  margin: 1.15rem 0 0.2rem;
-  font-size: 0.95rem;
+  margin: 1.75rem 0 0.35rem;
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: -0.015em;
 }
-.lede, .note, .meta { color: var(--muted); }
-.lede { margin: 0; max-width: 36rem; }
-.note { margin: 0; }
-.hero { margin-top: 1.75rem; }
+.lede { margin: 0; max-width: 34rem; color: var(--muted); }
+.note { margin: 0.7rem 0 0; color: var(--muted); }
+.hero { margin-top: 3.25rem; }
 .score {
   display: flex;
   align-items: baseline;
-  gap: 0.4rem;
+  gap: 0.35rem;
   margin: 0;
 }
 .num {
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, "Liberation Serif", serif;
-  font-size: clamp(4.75rem, 22vw, 7rem);
-  font-weight: 500;
+  font-weight: 300;
+  font-size: clamp(5.5rem, 24vw, 8rem);
   letter-spacing: -0.045em;
-  line-height: 0.85;
+  line-height: 0.82;
 }
-.den { color: var(--muted); font-size: 1.35rem; }
+.den {
+  color: var(--muted);
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
 .percent {
-  margin: 0.35rem 0 0.7rem;
+  margin: 0.65rem 0 1rem;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 .track {
-  height: 0.4rem;
-  background: #d5cdbf;
+  height: 2px;
+  background: var(--track);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -102,64 +173,81 @@ h3 {
   display: block;
   height: 100%;
   background: var(--fill);
-  border-radius: inherit;
 }
 .hero ul, .topics, section ol, section ul {
-  margin: 0.9rem 0 0;
+  margin: 1.35rem 0 0;
   padding: 0;
   list-style: none;
 }
 .hero ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.25rem;
+  gap: 0.5rem 1.75rem;
 }
 .hero li { font-variant-numeric: tabular-nums; }
-.topics li { padding: 0.55rem 0; }
+.hero strong { font-weight: 600; }
+.topics li {
+  padding: 0.95rem 0 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+.topics li:first-child { border-top: 1px solid var(--line); }
 .topic-line {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 1rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.55rem;
 }
-.topic-line span:first-child { min-width: 0; }
-.count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.topic-line span:first-child { min-width: 0; font-weight: 500; }
+.count {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
 .diffs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 .diffs article {
-  background: var(--paper);
+  background: var(--card);
   border: 1px solid var(--line);
-  padding: 0.8rem 0.75rem 0.7rem;
+  border-radius: 12px;
+  padding: 1.15rem 1rem 1.05rem;
 }
 .diffs h3 {
   margin: 0;
-  color: var(--muted);
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.diffs .easy h3 { color: var(--ink); font-weight: 600; }
+.diffs .medium h3 { color: var(--mid); font-weight: 500; }
+.diffs .hard h3 { color: var(--muted); font-weight: 500; }
 .diffs p {
-  margin: 0.3rem 0 0;
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, "Liberation Serif", serif;
-  font-size: clamp(1.7rem, 6vw, 2.1rem);
-  font-weight: 500;
+  margin: 0.6rem 0 0;
+  font-size: clamp(1.9rem, 6vw, 2.35rem);
+  font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1;
 }
-.diffs span { color: var(--muted); font-size: 0.95rem; }
+.diffs span {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+}
 .streak {
   margin: 0;
-  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, "Liberation Serif", serif;
-  font-size: clamp(2rem, 7vw, 2.6rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.4rem, 8vw, 3.25rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
   line-height: 1;
 }
-.recent li, .codes li { padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+.recent li, .codes li {
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+}
 .recent li:first-child, .codes li:first-child { border-top: 1px solid var(--line); }
 time {
   display: block;
@@ -167,23 +255,58 @@ time {
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }
-.meta { margin: 0.15rem 0 0; font-size: 0.85rem; }
+.recent a, .codes a { font-weight: 500; letter-spacing: -0.015em; }
+.meta { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.85rem; }
+.diff.easy { color: var(--ink); font-weight: 600; }
+.diff.medium { color: var(--mid); font-weight: 500; }
+.diff.hard { color: var(--muted); font-weight: 500; }
+.status.solved { color: var(--ink); font-weight: 600; }
+.status.review { color: var(--muted); font-weight: 500; }
+.status.todo { color: var(--muted); font-weight: 400; }
 footer {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
-  margin-top: 2.5rem;
-  padding-top: 1rem;
+  gap: 0.5rem 1.5rem;
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
+}
+@media (prefers-color-scheme: dark) {
+  .bar { background: rgba(0, 0, 0, 0.72); }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .bar-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 0.6rem 1.25rem 0.7rem;
+  }
+  .bar nav { margin-left: 0; gap: 1rem; }
+  main { padding: 2.5rem 1.25rem 4.5rem; }
+  h2 { margin-top: 2.75rem; }
+  .hero { margin-top: 2.5rem; }
 }
 
 </style>
 </head>
 <body>
 <!-- Generated by dashboard.py from problems.yaml and the solution folders. -->
-<main>
+<header class="bar">
+<div class="bar-inner">
+<a class="brand" href="#overview">NeetCode 150</a>
+<nav aria-label="Sections">
+<a href="#topics">Topics</a>
+<a href="#difficulty">Difficulty</a>
+<a href="#streak">Streak</a>
+<a href="#recent">Recent</a>
+<a href="#solutions">Solutions</a>
+</nav>
+</div>
+</header>
+<main id="overview">
 <header>
 <p class="eyebrow">C++ interview practice</p>
 <h1>NeetCode 150</h1>
@@ -201,7 +324,7 @@ footer {
 <li><strong>150</strong> to do</li>
 </ul>
 </section>
-<section>
+<section id="topics">
 <h2>Topics</h2>
 <ol class="topics">
 <li>
@@ -368,33 +491,33 @@ footer {
 </li>
 </ol>
 </section>
-<section>
+<section id="difficulty">
 <h2>Difficulty</h2>
 <div class="diffs">
-<article>
+<article class="easy">
 <h3>Easy</h3>
 <p>0<span> / 28</span></p>
 </article>
-<article>
+<article class="medium">
 <h3>Medium</h3>
 <p>0<span> / 101</span></p>
 </article>
-<article>
+<article class="hard">
 <h3>Hard</h3>
 <p>0<span> / 21</span></p>
 </article>
 </div>
 </section>
-<section>
+<section id="streak">
 <h2>Streak</h2>
 <p class="streak">0 days</p>
 <p class="note">No solved dates yet.</p>
 </section>
-<section>
+<section id="recent">
 <h2>Recent solves</h2>
 <p class="note">No solves yet.</p>
 </section>
-<section>
+<section id="solutions">
 <h2>Solutions</h2>
 <p class="note">No solution folders yet.</p>
 </section>
@@ -403,5 +526,39 @@ footer {
 <a href="https://neetcode.io/practice">NeetCode 150</a>
 </footer>
 </main>
+<script>
+
+(() => {
+  const links = [...document.querySelectorAll(".bar nav a")];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  const setActive = (id) => {
+    for (const link of links) {
+      const on = link.getAttribute("href") === "#" + id;
+      link.classList.toggle("active", on);
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    }
+  };
+  for (const link of links) {
+    link.addEventListener("click", () => {
+      setActive(link.getAttribute("href").slice(1));
+    });
+  }
+  if (!sections.length || !("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActive(visible[0].target.id);
+    },
+    { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.25, 0.6, 1] }
+  );
+  for (const section of sections) observer.observe(section);
+})();
+
+</script>
 </body>
 </html>
