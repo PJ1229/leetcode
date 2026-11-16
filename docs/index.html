@@ -174,11 +174,32 @@ h3 {
   height: 100%;
   background: var(--fill);
 }
-.hero ul, .topics, section ol, section ul {
+.hero ul, .topics, .problems, section ol, section ul {
   margin: 1.35rem 0 0;
   padding: 0;
   list-style: none;
 }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3.25rem 0 0.35rem;
+}
+.section-head h2 { margin: 0; }
+.text-btn {
+  margin: 0;
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+.text-btn:hover { color: var(--ink); }
+.text-btn:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 .hero ul {
   display: flex;
   flex-wrap: wrap;
@@ -186,17 +207,59 @@ h3 {
 }
 .hero li { font-variant-numeric: tabular-nums; }
 .hero strong { font-weight: 600; }
-.topics li {
+.topic { border-bottom: 1px solid var(--line); }
+.topic:first-child { border-top: 1px solid var(--line); }
+.topic summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
   padding: 0.95rem 0 0.85rem;
-  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  list-style: none;
 }
-.topics li:first-child { border-top: 1px solid var(--line); }
+.topic summary::-webkit-details-marker { display: none; }
+.topic summary:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.chevron {
+  width: 0.72rem;
+  height: 0.72rem;
+  margin-top: 0.28rem;
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+.topic[open] .chevron { transform: rotate(90deg); }
+.topic-main { flex: 1; min-width: 0; }
 .topic-line {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
   margin-bottom: 0.55rem;
+}
+.problems { margin: 0 0 0.35rem; }
+.problems li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.85rem;
+  padding: 0.7rem 0 0.7rem 1.45rem;
+  border-top: 1px solid var(--line);
+}
+.pn {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5rem;
+}
+.problems a.problem { flex: 1 1 12rem; min-width: 0; }
+.row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 .topic-line span:first-child { min-width: 0; font-weight: 500; }
 .count {
@@ -295,8 +358,14 @@ footer {
   }
   .bar nav { margin-left: 0; gap: 1rem; }
   main { padding: 2.5rem 1.25rem 4.5rem; }
-  h2 { margin-top: 2.75rem; }
+  section > h2 { margin-top: 2.75rem; }
+  .section-head { margin-top: 2.5rem; }
   .hero { margin-top: 2.5rem; }
+  .problems li { padding-left: 0.2rem; }
+  .row-meta { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chevron { transition: none; }
 }
 
 </style>
@@ -334,171 +403,1650 @@ footer {
 </ul>
 </section>
 <section id="topics">
+<div class="section-head">
 <h2>Topics</h2>
-<ol class="topics">
-<li>
-<div class="topic-line">
+<button type="button" class="text-btn" id="topics-toggle">Expand all</button>
+</div>
+<div class="topics">
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
 <span>01 · Arrays &amp; Hashing</span>
 <span class="count">0/9</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9" aria-label="Arrays &amp; Hashing">
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9" aria-label="Arrays &amp; Hashing">
 <span style="width:0%"></span>
-</div>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">217</span>
+<a class="problem" href="https://leetcode.com/problems/contains-duplicate/" target="_blank" rel="noopener noreferrer">Contains Duplicate</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>02 · Two Pointers</span>
-<span class="count">0/5</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" aria-label="Two Pointers">
-<span style="width:0%"></span>
-</div>
+<span class="pn">242</span>
+<a class="problem" href="https://leetcode.com/problems/valid-anagram/" target="_blank" rel="noopener noreferrer">Valid Anagram</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>03 · Sliding Window</span>
-<span class="count">0/6</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Sliding Window">
-<span style="width:0%"></span>
-</div>
+<span class="pn">1</span>
+<a class="problem" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer">Two Sum</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>04 · Stack</span>
-<span class="count">0/7</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Stack">
-<span style="width:0%"></span>
-</div>
+<span class="pn">49</span>
+<a class="problem" href="https://leetcode.com/problems/group-anagrams/" target="_blank" rel="noopener noreferrer">Group Anagrams</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>05 · Binary Search</span>
-<span class="count">0/7</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Binary Search">
-<span style="width:0%"></span>
-</div>
+<span class="pn">347</span>
+<a class="problem" href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" rel="noopener noreferrer">Top K Frequent Elements</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>06 · Linked List</span>
-<span class="count">0/11</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="11" aria-label="Linked List">
-<span style="width:0%"></span>
-</div>
+<span class="pn">238</span>
+<a class="problem" href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank" rel="noopener noreferrer">Product of Array Except Self</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>07 · Trees</span>
-<span class="count">0/15</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="15" aria-label="Trees">
-<span style="width:0%"></span>
-</div>
+<span class="pn">36</span>
+<a class="problem" href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="noopener noreferrer">Valid Sudoku</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>08 · Tries</span>
-<span class="count">0/3</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="3" aria-label="Tries">
-<span style="width:0%"></span>
-</div>
+<span class="pn">271</span>
+<a class="problem" href="https://leetcode.com/problems/encode-and-decode-strings/" target="_blank" rel="noopener noreferrer">Encode and Decode Strings</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 <li>
-<div class="topic-line">
-<span>09 · Heap / Priority Queue</span>
-<span class="count">0/7</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Heap / Priority Queue">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>10 · Backtracking</span>
-<span class="count">0/9</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9" aria-label="Backtracking">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>11 · Graphs</span>
-<span class="count">0/13</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="13" aria-label="Graphs">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>12 · Advanced Graphs</span>
-<span class="count">0/6</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Advanced Graphs">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>13 · 1-D DP</span>
-<span class="count">0/12</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12" aria-label="1-D DP">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>14 · 2-D DP</span>
-<span class="count">0/11</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="11" aria-label="2-D DP">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>15 · Greedy</span>
-<span class="count">0/8</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Greedy">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>16 · Intervals</span>
-<span class="count">0/6</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Intervals">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>17 · Math &amp; Geometry</span>
-<span class="count">0/8</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Math &amp; Geometry">
-<span style="width:0%"></span>
-</div>
-</li>
-<li>
-<div class="topic-line">
-<span>18 · Bit Manipulation</span>
-<span class="count">0/7</span>
-</div>
-<div class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Bit Manipulation">
-<span style="width:0%"></span>
-</div>
+<span class="pn">128</span>
+<a class="problem" href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener noreferrer">Longest Consecutive Sequence</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
 </li>
 </ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>02 · Two Pointers</span>
+<span class="count">0/5</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" aria-label="Two Pointers">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">125</span>
+<a class="problem" href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener noreferrer">Valid Palindrome</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">167</span>
+<a class="problem" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank" rel="noopener noreferrer">Two Sum II - Input Array Is Sorted</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">15</span>
+<a class="problem" href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener noreferrer">3Sum</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">11</span>
+<a class="problem" href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener noreferrer">Container With Most Water</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">42</span>
+<a class="problem" href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="noopener noreferrer">Trapping Rain Water</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>03 · Sliding Window</span>
+<span class="count">0/6</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Sliding Window">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">121</span>
+<a class="problem" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener noreferrer">Best Time to Buy and Sell Stock</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">3</span>
+<a class="problem" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener noreferrer">Longest Substring Without Repeating Characters</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">424</span>
+<a class="problem" href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank" rel="noopener noreferrer">Longest Repeating Character Replacement</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">567</span>
+<a class="problem" href="https://leetcode.com/problems/permutation-in-string/" target="_blank" rel="noopener noreferrer">Permutation in String</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">76</span>
+<a class="problem" href="https://leetcode.com/problems/minimum-window-substring/" target="_blank" rel="noopener noreferrer">Minimum Window Substring</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">239</span>
+<a class="problem" href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="noopener noreferrer">Sliding Window Maximum</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>04 · Stack</span>
+<span class="count">0/7</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Stack">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">20</span>
+<a class="problem" href="https://leetcode.com/problems/valid-parentheses/" target="_blank" rel="noopener noreferrer">Valid Parentheses</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">155</span>
+<a class="problem" href="https://leetcode.com/problems/min-stack/" target="_blank" rel="noopener noreferrer">Min Stack</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">150</span>
+<a class="problem" href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank" rel="noopener noreferrer">Evaluate Reverse Polish Notation</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">22</span>
+<a class="problem" href="https://leetcode.com/problems/generate-parentheses/" target="_blank" rel="noopener noreferrer">Generate Parentheses</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">739</span>
+<a class="problem" href="https://leetcode.com/problems/daily-temperatures/" target="_blank" rel="noopener noreferrer">Daily Temperatures</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">853</span>
+<a class="problem" href="https://leetcode.com/problems/car-fleet/" target="_blank" rel="noopener noreferrer">Car Fleet</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">84</span>
+<a class="problem" href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener noreferrer">Largest Rectangle in Histogram</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>05 · Binary Search</span>
+<span class="count">0/7</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Binary Search">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">704</span>
+<a class="problem" href="https://leetcode.com/problems/binary-search/" target="_blank" rel="noopener noreferrer">Binary Search</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">74</span>
+<a class="problem" href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" rel="noopener noreferrer">Search a 2D Matrix</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">875</span>
+<a class="problem" href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank" rel="noopener noreferrer">Koko Eating Bananas</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">153</span>
+<a class="problem" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener noreferrer">Find Minimum in Rotated Sorted Array</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">33</span>
+<a class="problem" href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener noreferrer">Search in Rotated Sorted Array</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">981</span>
+<a class="problem" href="https://leetcode.com/problems/time-based-key-value-store/" target="_blank" rel="noopener noreferrer">Time Based Key-Value Store</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">4</span>
+<a class="problem" href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener noreferrer">Median of Two Sorted Arrays</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>06 · Linked List</span>
+<span class="count">0/11</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="11" aria-label="Linked List">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">206</span>
+<a class="problem" href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="noopener noreferrer">Reverse Linked List</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">21</span>
+<a class="problem" href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener noreferrer">Merge Two Sorted Lists</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">143</span>
+<a class="problem" href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="noopener noreferrer">Reorder List</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">19</span>
+<a class="problem" href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener noreferrer">Remove Nth Node From End of List</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">138</span>
+<a class="problem" href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener noreferrer">Copy List with Random Pointer</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">2</span>
+<a class="problem" href="https://leetcode.com/problems/add-two-numbers/" target="_blank" rel="noopener noreferrer">Add Two Numbers</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">141</span>
+<a class="problem" href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener noreferrer">Linked List Cycle</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">287</span>
+<a class="problem" href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="noopener noreferrer">Find the Duplicate Number</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">146</span>
+<a class="problem" href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="noopener noreferrer">LRU Cache</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">23</span>
+<a class="problem" href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener noreferrer">Merge k Sorted Lists</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">25</span>
+<a class="problem" href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener noreferrer">Reverse Nodes in k-Group</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>07 · Trees</span>
+<span class="count">0/15</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="15" aria-label="Trees">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">226</span>
+<a class="problem" href="https://leetcode.com/problems/invert-binary-tree/" target="_blank" rel="noopener noreferrer">Invert Binary Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">104</span>
+<a class="problem" href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener noreferrer">Maximum Depth of Binary Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">543</span>
+<a class="problem" href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank" rel="noopener noreferrer">Diameter of Binary Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">110</span>
+<a class="problem" href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="noopener noreferrer">Balanced Binary Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">100</span>
+<a class="problem" href="https://leetcode.com/problems/same-tree/" target="_blank" rel="noopener noreferrer">Same Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">572</span>
+<a class="problem" href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank" rel="noopener noreferrer">Subtree of Another Tree</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">235</span>
+<a class="problem" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" rel="noopener noreferrer">Lowest Common Ancestor of a Binary Search Tree</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">102</span>
+<a class="problem" href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener noreferrer">Binary Tree Level Order Traversal</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">199</span>
+<a class="problem" href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener noreferrer">Binary Tree Right Side View</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1448</span>
+<a class="problem" href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/" target="_blank" rel="noopener noreferrer">Count Good Nodes in Binary Tree</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">98</span>
+<a class="problem" href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank" rel="noopener noreferrer">Validate Binary Search Tree</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">230</span>
+<a class="problem" href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank" rel="noopener noreferrer">Kth Smallest Element in a BST</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">105</span>
+<a class="problem" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener noreferrer">Construct Binary Tree from Preorder and Inorder Traversal</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">124</span>
+<a class="problem" href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener noreferrer">Binary Tree Maximum Path Sum</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">297</span>
+<a class="problem" href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank" rel="noopener noreferrer">Serialize and Deserialize Binary Tree</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>08 · Tries</span>
+<span class="count">0/3</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="3" aria-label="Tries">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">208</span>
+<a class="problem" href="https://leetcode.com/problems/implement-trie-prefix-tree/" target="_blank" rel="noopener noreferrer">Implement Trie (Prefix Tree)</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">211</span>
+<a class="problem" href="https://leetcode.com/problems/design-add-and-search-words-data-structure/" target="_blank" rel="noopener noreferrer">Design Add and Search Words Data Structure</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">212</span>
+<a class="problem" href="https://leetcode.com/problems/word-search-ii/" target="_blank" rel="noopener noreferrer">Word Search II</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>09 · Heap / Priority Queue</span>
+<span class="count">0/7</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Heap / Priority Queue">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">703</span>
+<a class="problem" href="https://leetcode.com/problems/kth-largest-element-in-a-stream/" target="_blank" rel="noopener noreferrer">Kth Largest Element in a Stream</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1046</span>
+<a class="problem" href="https://leetcode.com/problems/last-stone-weight/" target="_blank" rel="noopener noreferrer">Last Stone Weight</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">973</span>
+<a class="problem" href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank" rel="noopener noreferrer">K Closest Points to Origin</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">215</span>
+<a class="problem" href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener noreferrer">Kth Largest Element in an Array</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">621</span>
+<a class="problem" href="https://leetcode.com/problems/task-scheduler/" target="_blank" rel="noopener noreferrer">Task Scheduler</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">355</span>
+<a class="problem" href="https://leetcode.com/problems/design-twitter/" target="_blank" rel="noopener noreferrer">Design Twitter</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">295</span>
+<a class="problem" href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="noopener noreferrer">Find Median from Data Stream</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>10 · Backtracking</span>
+<span class="count">0/9</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9" aria-label="Backtracking">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">78</span>
+<a class="problem" href="https://leetcode.com/problems/subsets/" target="_blank" rel="noopener noreferrer">Subsets</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">39</span>
+<a class="problem" href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="noopener noreferrer">Combination Sum</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">46</span>
+<a class="problem" href="https://leetcode.com/problems/permutations/" target="_blank" rel="noopener noreferrer">Permutations</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">90</span>
+<a class="problem" href="https://leetcode.com/problems/subsets-ii/" target="_blank" rel="noopener noreferrer">Subsets II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">40</span>
+<a class="problem" href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener noreferrer">Combination Sum II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">79</span>
+<a class="problem" href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener noreferrer">Word Search</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">131</span>
+<a class="problem" href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener noreferrer">Palindrome Partitioning</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">17</span>
+<a class="problem" href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener noreferrer">Letter Combinations of a Phone Number</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">51</span>
+<a class="problem" href="https://leetcode.com/problems/n-queens/" target="_blank" rel="noopener noreferrer">N-Queens</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>11 · Graphs</span>
+<span class="count">0/13</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="13" aria-label="Graphs">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">200</span>
+<a class="problem" href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener noreferrer">Number of Islands</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">133</span>
+<a class="problem" href="https://leetcode.com/problems/clone-graph/" target="_blank" rel="noopener noreferrer">Clone Graph</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">695</span>
+<a class="problem" href="https://leetcode.com/problems/max-area-of-island/" target="_blank" rel="noopener noreferrer">Max Area of Island</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">417</span>
+<a class="problem" href="https://leetcode.com/problems/pacific-atlantic-water-flow/" target="_blank" rel="noopener noreferrer">Pacific Atlantic Water Flow</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">130</span>
+<a class="problem" href="https://leetcode.com/problems/surrounded-regions/" target="_blank" rel="noopener noreferrer">Surrounded Regions</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">994</span>
+<a class="problem" href="https://leetcode.com/problems/rotting-oranges/" target="_blank" rel="noopener noreferrer">Rotting Oranges</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">286</span>
+<a class="problem" href="https://leetcode.com/problems/walls-and-gates/" target="_blank" rel="noopener noreferrer">Walls and Gates</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">207</span>
+<a class="problem" href="https://leetcode.com/problems/course-schedule/" target="_blank" rel="noopener noreferrer">Course Schedule</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">210</span>
+<a class="problem" href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener noreferrer">Course Schedule II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">684</span>
+<a class="problem" href="https://leetcode.com/problems/redundant-connection/" target="_blank" rel="noopener noreferrer">Redundant Connection</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">323</span>
+<a class="problem" href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank" rel="noopener noreferrer">Number of Connected Components in an Undirected Graph</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">261</span>
+<a class="problem" href="https://leetcode.com/problems/graph-valid-tree/" target="_blank" rel="noopener noreferrer">Graph Valid Tree</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">127</span>
+<a class="problem" href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener noreferrer">Word Ladder</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>12 · Advanced Graphs</span>
+<span class="count">0/6</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Advanced Graphs">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">332</span>
+<a class="problem" href="https://leetcode.com/problems/reconstruct-itinerary/" target="_blank" rel="noopener noreferrer">Reconstruct Itinerary</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1584</span>
+<a class="problem" href="https://leetcode.com/problems/min-cost-to-connect-all-points/" target="_blank" rel="noopener noreferrer">Min Cost to Connect All Points</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">743</span>
+<a class="problem" href="https://leetcode.com/problems/network-delay-time/" target="_blank" rel="noopener noreferrer">Network Delay Time</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">778</span>
+<a class="problem" href="https://leetcode.com/problems/swim-in-rising-water/" target="_blank" rel="noopener noreferrer">Swim in Rising Water</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">269</span>
+<a class="problem" href="https://leetcode.com/problems/alien-dictionary/" target="_blank" rel="noopener noreferrer">Alien Dictionary</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">787</span>
+<a class="problem" href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank" rel="noopener noreferrer">Cheapest Flights Within K Stops</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>13 · 1-D DP</span>
+<span class="count">0/12</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="12" aria-label="1-D DP">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">70</span>
+<a class="problem" href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener noreferrer">Climbing Stairs</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">746</span>
+<a class="problem" href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank" rel="noopener noreferrer">Min Cost Climbing Stairs</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">198</span>
+<a class="problem" href="https://leetcode.com/problems/house-robber/" target="_blank" rel="noopener noreferrer">House Robber</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">213</span>
+<a class="problem" href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="noopener noreferrer">House Robber II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">5</span>
+<a class="problem" href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener noreferrer">Longest Palindromic Substring</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">647</span>
+<a class="problem" href="https://leetcode.com/problems/palindromic-substrings/" target="_blank" rel="noopener noreferrer">Palindromic Substrings</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">91</span>
+<a class="problem" href="https://leetcode.com/problems/decode-ways/" target="_blank" rel="noopener noreferrer">Decode Ways</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">322</span>
+<a class="problem" href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener noreferrer">Coin Change</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">152</span>
+<a class="problem" href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener noreferrer">Maximum Product Subarray</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">139</span>
+<a class="problem" href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener noreferrer">Word Break</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">300</span>
+<a class="problem" href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank" rel="noopener noreferrer">Longest Increasing Subsequence</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">416</span>
+<a class="problem" href="https://leetcode.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener noreferrer">Partition Equal Subset Sum</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>14 · 2-D DP</span>
+<span class="count">0/11</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="11" aria-label="2-D DP">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">62</span>
+<a class="problem" href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener noreferrer">Unique Paths</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1143</span>
+<a class="problem" href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank" rel="noopener noreferrer">Longest Common Subsequence</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">309</span>
+<a class="problem" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="noopener noreferrer">Best Time to Buy and Sell Stock with Cooldown</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">518</span>
+<a class="problem" href="https://leetcode.com/problems/coin-change-ii/" target="_blank" rel="noopener noreferrer">Coin Change II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">494</span>
+<a class="problem" href="https://leetcode.com/problems/target-sum/" target="_blank" rel="noopener noreferrer">Target Sum</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">97</span>
+<a class="problem" href="https://leetcode.com/problems/interleaving-string/" target="_blank" rel="noopener noreferrer">Interleaving String</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">329</span>
+<a class="problem" href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" target="_blank" rel="noopener noreferrer">Longest Increasing Path in a Matrix</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">115</span>
+<a class="problem" href="https://leetcode.com/problems/distinct-subsequences/" target="_blank" rel="noopener noreferrer">Distinct Subsequences</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">72</span>
+<a class="problem" href="https://leetcode.com/problems/edit-distance/" target="_blank" rel="noopener noreferrer">Edit Distance</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">312</span>
+<a class="problem" href="https://leetcode.com/problems/burst-balloons/" target="_blank" rel="noopener noreferrer">Burst Balloons</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">10</span>
+<a class="problem" href="https://leetcode.com/problems/regular-expression-matching/" target="_blank" rel="noopener noreferrer">Regular Expression Matching</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>15 · Greedy</span>
+<span class="count">0/8</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Greedy">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">53</span>
+<a class="problem" href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener noreferrer">Maximum Subarray</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">55</span>
+<a class="problem" href="https://leetcode.com/problems/jump-game/" target="_blank" rel="noopener noreferrer">Jump Game</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">45</span>
+<a class="problem" href="https://leetcode.com/problems/jump-game-ii/" target="_blank" rel="noopener noreferrer">Jump Game II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">134</span>
+<a class="problem" href="https://leetcode.com/problems/gas-station/" target="_blank" rel="noopener noreferrer">Gas Station</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">846</span>
+<a class="problem" href="https://leetcode.com/problems/hand-of-straights/" target="_blank" rel="noopener noreferrer">Hand of Straights</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1899</span>
+<a class="problem" href="https://leetcode.com/problems/merge-triplets-to-form-target-triplet/" target="_blank" rel="noopener noreferrer">Merge Triplets to Form Target Triplet</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">763</span>
+<a class="problem" href="https://leetcode.com/problems/partition-labels/" target="_blank" rel="noopener noreferrer">Partition Labels</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">678</span>
+<a class="problem" href="https://leetcode.com/problems/valid-parenthesis-string/" target="_blank" rel="noopener noreferrer">Valid Parenthesis String</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>16 · Intervals</span>
+<span class="count">0/6</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Intervals">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">57</span>
+<a class="problem" href="https://leetcode.com/problems/insert-interval/" target="_blank" rel="noopener noreferrer">Insert Interval</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">56</span>
+<a class="problem" href="https://leetcode.com/problems/merge-intervals/" target="_blank" rel="noopener noreferrer">Merge Intervals</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">435</span>
+<a class="problem" href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank" rel="noopener noreferrer">Non-overlapping Intervals</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">252</span>
+<a class="problem" href="https://leetcode.com/problems/meeting-rooms/" target="_blank" rel="noopener noreferrer">Meeting Rooms</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">253</span>
+<a class="problem" href="https://leetcode.com/problems/meeting-rooms-ii/" target="_blank" rel="noopener noreferrer">Meeting Rooms II</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">1851</span>
+<a class="problem" href="https://leetcode.com/problems/minimum-interval-to-include-each-query/" target="_blank" rel="noopener noreferrer">Minimum Interval to Include Each Query</a>
+<span class="row-meta">
+<span class="diff hard">Hard</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>17 · Math &amp; Geometry</span>
+<span class="count">0/8</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="Math &amp; Geometry">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">48</span>
+<a class="problem" href="https://leetcode.com/problems/rotate-image/" target="_blank" rel="noopener noreferrer">Rotate Image</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">54</span>
+<a class="problem" href="https://leetcode.com/problems/spiral-matrix/" target="_blank" rel="noopener noreferrer">Spiral Matrix</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">73</span>
+<a class="problem" href="https://leetcode.com/problems/set-matrix-zeroes/" target="_blank" rel="noopener noreferrer">Set Matrix Zeroes</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">202</span>
+<a class="problem" href="https://leetcode.com/problems/happy-number/" target="_blank" rel="noopener noreferrer">Happy Number</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">66</span>
+<a class="problem" href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener noreferrer">Plus One</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">50</span>
+<a class="problem" href="https://leetcode.com/problems/powx-n/" target="_blank" rel="noopener noreferrer">Pow(x, n)</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">43</span>
+<a class="problem" href="https://leetcode.com/problems/multiply-strings/" target="_blank" rel="noopener noreferrer">Multiply Strings</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">2013</span>
+<a class="problem" href="https://leetcode.com/problems/detect-squares/" target="_blank" rel="noopener noreferrer">Detect Squares</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+<details class="topic">
+<summary>
+<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span class="topic-main">
+<span class="topic-line">
+<span>18 · Bit Manipulation</span>
+<span class="count">0/7</span>
+</span>
+<span class="track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" aria-label="Bit Manipulation">
+<span style="width:0%"></span>
+</span>
+</span>
+</summary>
+<ol class="problems">
+<li>
+<span class="pn">136</span>
+<a class="problem" href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener noreferrer">Single Number</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">191</span>
+<a class="problem" href="https://leetcode.com/problems/number-of-1-bits/" target="_blank" rel="noopener noreferrer">Number of 1 Bits</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">338</span>
+<a class="problem" href="https://leetcode.com/problems/counting-bits/" target="_blank" rel="noopener noreferrer">Counting Bits</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">190</span>
+<a class="problem" href="https://leetcode.com/problems/reverse-bits/" target="_blank" rel="noopener noreferrer">Reverse Bits</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">268</span>
+<a class="problem" href="https://leetcode.com/problems/missing-number/" target="_blank" rel="noopener noreferrer">Missing Number</a>
+<span class="row-meta">
+<span class="diff easy">Easy</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">371</span>
+<a class="problem" href="https://leetcode.com/problems/sum-of-two-integers/" target="_blank" rel="noopener noreferrer">Sum of Two Integers</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+<li>
+<span class="pn">7</span>
+<a class="problem" href="https://leetcode.com/problems/reverse-integer/" target="_blank" rel="noopener noreferrer">Reverse Integer</a>
+<span class="row-meta">
+<span class="diff medium">Medium</span>
+<span class="status todo">todo</span>
+
+</span>
+</li>
+</ol>
+</details>
+</div>
 </section>
 <section id="difficulty">
 <h2>Difficulty</h2>
@@ -555,7 +2103,7 @@ footer {
       setActive(link.getAttribute("href").slice(1));
     });
   }
-  if (!sections.length || !("IntersectionObserver" in window)) return;
+  if (sections.length && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     (entries) => {
       const visible = entries
@@ -566,6 +2114,22 @@ footer {
     { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.25, 0.6, 1] }
   );
   for (const section of sections) observer.observe(section);
+  }
+  const topics = [...document.querySelectorAll("details.topic")];
+  const toggle = document.querySelector("#topics-toggle");
+  if (toggle && topics.length) {
+    const label = () => {
+      const open = topics.every((el) => el.open);
+      toggle.textContent = open ? "Collapse all" : "Expand all";
+    };
+    toggle.addEventListener("click", () => {
+      const expand = topics.some((el) => !el.open);
+      for (const el of topics) el.open = expand;
+      label();
+    });
+    for (const el of topics) el.addEventListener("toggle", label);
+    label();
+  }
 })();
 
 </script>

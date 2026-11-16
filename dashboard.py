@@ -100,7 +100,7 @@ def render(problems: list[dict], today: date, repo_url: str, has_code=None) -> s
         '<main id="overview">',
         header_block(),
         hero_block(done, total, percent, solved, review, todo),
-        topics_block(problems),
+        topics_block(problems, repo_url, has_code),
         difficulty_block(problems),
         streak_block(current, longest, latest),
         recent_block(problems, dated, repo_url, has_code),
@@ -175,37 +175,75 @@ def hero_block(done: int, total: int, percent: int, solved: int, review: int, to
     )
 
 
-def topics_block(problems: list[dict]) -> str:
+def topics_block(problems: list[dict], repo_url: str, has_code) -> str:
     rows = []
     for topic in nc150.TOPICS:
         items = [problem for problem in problems if problem["topic"] == topic.id]
         done = sum(problem["status"] in nc150.DONE for problem in items)
         label = f"{topic.directory[:2]} · {topic.name}"
+        problems_html = "\n".join(problem_row(problem, repo_url, has_code) for problem in items)
         rows.append(
             "\n".join(
                 [
-                    "<li>",
-                    "<div class=\"topic-line\">",
+                    '<details class="topic">',
+                    "<summary>",
+                    '<svg class="chevron" viewBox="0 0 12 12" aria-hidden="true">'
+                    '<path d="M4.2 2.2 L8 6 L4.2 9.8" fill="none" stroke="currentColor" '
+                    'stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+                    '<span class="topic-main">',
+                    '<span class="topic-line">',
                     f"<span>{esc(label)}</span>",
-                    f"<span class=\"count\">{done}/{len(items)}</span>",
-                    "</div>",
-                    '<div class="track" role="progressbar" '
+                    f'<span class="count">{done}/{len(items)}</span>',
+                    "</span>",
+                    '<span class="track" role="progressbar" '
                     f'aria-valuenow="{done}" aria-valuemin="0" aria-valuemax="{len(items)}" '
                     f'aria-label="{esc(topic.name)}">',
                     f'<span style="width:{bar_width(done, len(items))}"></span>',
-                    "</div>",
-                    "</li>",
+                    "</span>",
+                    "</span>",
+                    "</summary>",
+                    '<ol class="problems">',
+                    problems_html,
+                    "</ol>",
+                    "</details>",
                 ]
             )
         )
     return "\n".join(
         [
             '<section id="topics">',
+            '<div class="section-head">',
             "<h2>Topics</h2>",
-            '<ol class="topics">',
+            '<button type="button" class="text-btn" id="topics-toggle">Expand all</button>',
+            "</div>",
+            '<div class="topics">',
             "\n".join(rows),
-            "</ol>",
+            "</div>",
             "</section>",
+        ]
+    )
+
+
+def problem_row(problem: dict, repo_url: str, has_code) -> str:
+    level = problem["difficulty"]
+    status = problem["status"]
+    status_text = status
+    if problem["solved_date"] and status in nc150.DONE:
+        status_text = f"{status} · {format_date(problem['solved_date'])}"
+    code = ""
+    if has_code(problem):
+        code = file_link(repo_url, problem)
+    return "\n".join(
+        [
+            "<li>",
+            f'<span class="pn">{problem["number"]}</span>',
+            leetcode_link(problem),
+            '<span class="row-meta">',
+            f'<span class="diff {level.lower()}">{esc(level)}</span>',
+            f'<span class="status {status}">{esc(status_text)}</span>',
+            code,
+            "</span>",
+            "</li>",
         ]
     )
 
@@ -591,11 +629,32 @@ h3 {
   height: 100%;
   background: var(--fill);
 }
-.hero ul, .topics, section ol, section ul {
+.hero ul, .topics, .problems, section ol, section ul {
   margin: 1.35rem 0 0;
   padding: 0;
   list-style: none;
 }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3.25rem 0 0.35rem;
+}
+.section-head h2 { margin: 0; }
+.text-btn {
+  margin: 0;
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+.text-btn:hover { color: var(--ink); }
+.text-btn:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 .hero ul {
   display: flex;
   flex-wrap: wrap;
@@ -603,17 +662,59 @@ h3 {
 }
 .hero li { font-variant-numeric: tabular-nums; }
 .hero strong { font-weight: 600; }
-.topics li {
+.topic { border-bottom: 1px solid var(--line); }
+.topic:first-child { border-top: 1px solid var(--line); }
+.topic summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
   padding: 0.95rem 0 0.85rem;
-  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  list-style: none;
 }
-.topics li:first-child { border-top: 1px solid var(--line); }
+.topic summary::-webkit-details-marker { display: none; }
+.topic summary:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.chevron {
+  width: 0.72rem;
+  height: 0.72rem;
+  margin-top: 0.28rem;
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+.topic[open] .chevron { transform: rotate(90deg); }
+.topic-main { flex: 1; min-width: 0; }
 .topic-line {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
   margin-bottom: 0.55rem;
+}
+.problems { margin: 0 0 0.35rem; }
+.problems li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.85rem;
+  padding: 0.7rem 0 0.7rem 1.45rem;
+  border-top: 1px solid var(--line);
+}
+.pn {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5rem;
+}
+.problems a.problem { flex: 1 1 12rem; min-width: 0; }
+.row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 .topic-line span:first-child { min-width: 0; font-weight: 500; }
 .count {
@@ -712,8 +813,14 @@ footer {
   }
   .bar nav { margin-left: 0; gap: 1rem; }
   main { padding: 2.5rem 1.25rem 4.5rem; }
-  h2 { margin-top: 2.75rem; }
+  section > h2 { margin-top: 2.75rem; }
+  .section-head { margin-top: 2.5rem; }
   .hero { margin-top: 2.5rem; }
+  .problems li { padding-left: 0.2rem; }
+  .row-meta { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chevron { transition: none; }
 }
 """
 
@@ -736,7 +843,7 @@ SCRIPT = """
       setActive(link.getAttribute("href").slice(1));
     });
   }
-  if (!sections.length || !("IntersectionObserver" in window)) return;
+  if (sections.length && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     (entries) => {
       const visible = entries
@@ -747,6 +854,22 @@ SCRIPT = """
     { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.25, 0.6, 1] }
   );
   for (const section of sections) observer.observe(section);
+  }
+  const topics = [...document.querySelectorAll("details.topic")];
+  const toggle = document.querySelector("#topics-toggle");
+  if (toggle && topics.length) {
+    const label = () => {
+      const open = topics.every((el) => el.open);
+      toggle.textContent = open ? "Collapse all" : "Expand all";
+    };
+    toggle.addEventListener("click", () => {
+      const expand = topics.some((el) => !el.open);
+      for (const el of topics) el.open = expand;
+      label();
+    });
+    for (const el of topics) el.addEventListener("toggle", label);
+    label();
+  }
 })();
 """
 
