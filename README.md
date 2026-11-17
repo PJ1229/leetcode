@@ -63,11 +63,11 @@ After a one-time choice of GitHub Actions as the Pages source, the page is publi
 
 ## Progress
 
-**0 / 150** done (0%). Done means `solved` or `review`.
+**2 / 150** done (1%). Done means `solved` or `review`.
 
-`░░░░░░░░░░░░░░░░░░░░░░░░`
+`█░░░░░░░░░░░░░░░░░░░░░░░`
 
-0 solved · 0 in review · 150 to do · 0 `solution.cpp` files
+2 solved · 0 in review · 148 to do · 2 `solution.cpp` files
 
 ## By topic
 
@@ -75,7 +75,7 @@ Easy, Medium, and Hard are the size of each topic. Solved, review, and to do fol
 
 | Topic | Easy | Medium | Hard | Solved | Review | To do | Total |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Arrays & Hashing](#topic-arrays-hashing) | 3 | 6 | 0 | 0 | 0 | 9 | 9 |
+| [Arrays & Hashing](#topic-arrays-hashing) | 3 | 6 | 0 | 2 | 0 | 7 | 9 |
 | [Two Pointers](#topic-two-pointers) | 1 | 3 | 1 | 0 | 0 | 5 | 5 |
 | [Sliding Window](#topic-sliding-window) | 1 | 3 | 2 | 0 | 0 | 6 | 6 |
 | [Stack](#topic-stack) | 1 | 5 | 1 | 0 | 0 | 7 | 7 |
@@ -93,30 +93,36 @@ Easy, Medium, and Hard are the size of each topic. Solved, review, and to do fol
 | [Intervals](#topic-intervals) | 1 | 4 | 1 | 0 | 0 | 6 | 6 |
 | [Math & Geometry](#topic-math-geometry) | 2 | 6 | 0 | 0 | 0 | 8 | 8 |
 | [Bit Manipulation](#topic-bit-manipulation) | 5 | 2 | 0 | 0 | 0 | 7 | 7 |
-| **Total** | **28** | **101** | **21** | **0** | **0** | **150** | **150** |
+| **Total** | **28** | **101** | **21** | **2** | **0** | **148** | **150** |
 
 ## By difficulty
 
 | Difficulty | Solved | Review | To do | Total |
 | --- | --- | --- | --- | --- |
-| Easy | 0 | 0 | 28 | 28 |
+| Easy | 2 | 0 | 26 | 28 |
 | Medium | 0 | 0 | 101 | 101 |
 | Hard | 0 | 0 | 21 | 21 |
-| **Total** | **0** | **0** | **150** | **150** |
+| **Total** | **2** | **0** | **148** | **150** |
 
 ## Streak
 
-Current streak: **0 days**. Longest streak: **0 days**.
+Current streak: **1 day**. Longest streak: **1 day**.
 
 ### Recent solves
 
-No `solved_date` entries yet.
+| Date | Problem | Topic | Difficulty | Status | Code |
+| --- | --- | --- | --- | --- | --- |
+| 2026-11-17 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Arrays & Hashing | Easy | solved | [solution](01-arrays-hashing/217-contains-duplicate/solution.cpp) |
+| 2026-11-17 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Arrays & Hashing | Easy | solved | [solution](01-arrays-hashing/242-valid-anagram/solution.cpp) |
 
 ## Solved
 
 Every `solved` and `review` problem. The name links to LeetCode. Code links to `solution.cpp` when it is in the repo.
 
-None yet. Start with `python3 new.py 217` (Contains Duplicate).
+| # | Problem | Topic | Difficulty | Status | Solved | Code |
+| --- | --- | --- | --- | --- | --- | --- |
+| 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Arrays & Hashing | Easy | solved | 2026-11-17 | [solution](01-arrays-hashing/217-contains-duplicate/solution.cpp) |
+| 242 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Arrays & Hashing | Easy | solved | 2026-11-17 | [solution](01-arrays-hashing/242-valid-anagram/solution.cpp) |
 
 ## Roadmap
 
@@ -124,12 +130,12 @@ NeetCode 150 in roadmap order. Premium marks a LeetCode paywall. The same statem
 
 <a id="topic-arrays-hashing"></a>
 
-### Arrays & Hashing (0/9)
+### Arrays & Hashing (2/9)
 
 | # | Problem | Difficulty | Status | Code |
 | --- | --- | --- | --- | --- |
-| 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Easy | todo | — |
-| 242 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Easy | todo | — |
+| 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Easy | solved | [solution](01-arrays-hashing/217-contains-duplicate/solution.cpp) |
+| 242 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Easy | solved | [solution](01-arrays-hashing/242-valid-anagram/solution.cpp) |
 | 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | Easy | todo | — |
 | 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams/) | Medium | todo | — |
 | 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | todo | — |
