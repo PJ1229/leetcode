@@ -13,7 +13,7 @@ Hash set membership. Remember what you have already seen and stop at the first r
 
 ## Key insight
 
-- First idea was a lookup table indexed by value, but the values are too large for that (the constraint goes up to 10^9), so he switched to a hash map of counts.
+- First idea was a lookup table indexed by value, but the values are too large for that (he read the value range, which is up to about 10^9 on LeetCode, and said that was way too big), so he switched to a hash map of counts.
 - The count map worked but ran slow and used a lot of memory. A hash set is enough because you only need "seen before", not a count.
 - `std::set` is an ordered tree, so each insert costs O(log n). `std::unordered_set` is a hash table and stores only keys, so it is faster and uses less memory than a map of pairs.
 - `insert()` returns a pair. If `.second` is false the value was already there, so return `true` right away. That combines the check and the insert into one step.
